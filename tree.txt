@@ -1,0 +1,162 @@
+.
+├── ~AutoRecover.beta.vcxproj
+├── beta.sdf
+├── beta.sln
+├── beta.VC.opendb
+├── beta.vcxproj
+├── beta.vcxproj.filters
+├── beta.vcxproj.user
+├── bin
+│   ├── main
+│   └── makeOutputFolder.txt
+├── build
+├── CMakeLists.txt
+├── Debug
+│   ├── beta.log
+│   ├── beta.tlog
+│   │   ├── beta.lastbuildstate
+│   │   ├── CL.command.1.tlog
+│   │   ├── CL.read.1.tlog
+│   │   ├── CL.write.1.tlog
+│   │   └── unsuccessfulbuild
+│   ├── vc140.idb
+│   └── vc140.pdb
+├── docs
+│   ├── Concurrency
+│   │   └── Cpp_Concurrency_In_Action.pdf
+│   ├── debug
+│   │   ├── vsnprintf字符串格式化输出实例：日志中打印程序名和行号 — TypeCodes.pdf
+│   │   ├── 五个 Linux 下用户空间的调试工具-技术 ◆ 学习_Linux.pdf
+│   │   ├── 动态分等级打印.Linux 程序开发打印 Debug 信息的使用技巧--C语言中几种输出调试信息的方法_精品文库_IThao123 - IT行业第一站.pdf
+│   │   ├── 应用 Valgrind 发现 Linux 程序的内存问题.pdf
+│   │   ├── 战胜 Linux 中的 Bug.pdf
+│   │   ├── 掌握 Linux 调试技术.pdf
+│   │   └── 调试_HaHack.pdf
+│   ├── Makefile
+│   │   ├── cmake
+│   │   │   ├── CMakePractice.pdf
+│   │   │   ├── CMake.Practice.读书笔记.尽量使用外部构建.二进制文件存储目录切换.pdf
+│   │   │   ├── CMake Tutorial _ CMake.pdf
+│   │   │   ├── CMake.Tutorial.CMake.pdf
+│   │   │   ├── cmake中一些预定义变量.cmake使用示例与整理总结.步步为赢.博客频道.CSDN.pdf
+│   │   │   ├── CMake中的字符串及文件操作.九天雁翎的博客. 博客频道.CSDN.pdf
+│   │   │   ├── CMake使用总结.MWB日常笔记.目录搜索.pdf
+│   │   │   ├── CMake入门.Name5566.file命令.32位64位.多目录.pdf
+│   │   │   ├── CMake_ 工程构建工具-为程序员服务.外部构建.pdf
+│   │   │   ├── Cmake的介绍和使用 Cmake实践 - 吾尝终日而思矣 不如须臾之所学也 - C++博客.pdf
+│   │   │   ├── CMake简单介绍 _ UC技术博客.pdf
+│   │   │   ├── CMake项目构建总结 - yzlworld的专栏 - 博客频道 - CSDN.pdf
+│   │   │   ├── 使用CMake构建项目的简明示例 - shuyong1999的专栏 - 博客频道 - CSDN.pdf
+│   │   │   └── 提高cmake性能的tips.wiki.pdf
+│   │   ├── 编译信息彩色化
+│   │   │   ├── Ubuntu设置gcc_g++_make输出颜色高亮 - Linux系统教程.pdf
+│   │   │   └── 使用colorgcc让编译器的输出信息彩色高亮 - gt945的专栏 - 博客频道 - CSDN.pdf
+│   │   └── 跟我一起写Makefile.pdf
+│   ├── TODOs.txt
+│   └── 一个有意思的东东 linux c打印自己的程序 - 1...2...3...4... - 博客频道 - CSDN.pdf
+├── moduleInclude
+│   ├── cmd
+│   │   └── cmdDispatcher.h
+│   ├── common
+│   │   └── common.h
+│   ├── debug
+│   │   └── debug.h
+│   ├── findGogoDns
+│   │   └── findGogoDns.h
+│   └── framework
+│       └── list
+│           └── lstLib.h
+├── moduleSrc
+│   ├── cmd
+│   │   ├── cmdDispatcher
+│   │   │   ├── CMakeLists.txt
+│   │   │   └── cmdDispatcher.cpp
+│   │   ├── cmdInput
+│   │   │   ├── bin
+│   │   │   │   ├── cmdInputBinFolder.txt
+│   │   │   │   ├── inputCmd
+│   │   │   │   ├── showInputCmdList -> inputCmd
+│   │   │   │   └── test -> inputCmd
+│   │   │   ├── build
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── cmdInput.cpp
+│   │   │   └── cmdInput.h
+│   │   └── doc
+│   │       ├── linux c有名管道简单说明-fisher0821-ChinaUnix博客.pdf
+│   │       ├── linux C语言编程,socket实现的即使通讯系统_百度知道.pdf
+│   │       ├── Linux 上实现双向进程间通信管道-zxg623-ChinaUnix博客.pdf
+│   │       ├── linux环境进程间通信之有名管道-fisher0821-ChinaUnix博客.pdf
+│   │       ├── 【Linux网络编程笔记】TCP短连接产生大量TIME_WAIT导致无法对外建立新TCP连接的原因及解决方法—实践篇 - slvher的专栏 - 博客频道 - CSDN.pdf
+│   │       ├── LINUX进程间通信：PIPE与FIFO - 山 人 - 博客园.pdf
+│   │       ├── refCode.txt
+│   │       ├── TCP TIME_WAIT常见解决方法-hanwei_1049-ChinaUnix博客.pdf
+│   │       └── 解决重启main提示端口被占用问题.setsockopt ：SO_LINGER 选项设置 - hongzi的专栏 - 博客频道 - CSDN.pdf
+│   ├── config
+│   ├── debug
+│   │   ├── CMakeLists.txt
+│   │   ├── debug.cpp
+│   │   └── windows控制台中使用不同颜色显示不同类型的日志 - 可可西 - 博客园.pdf
+│   ├── findGogoDns
+│   │   ├── CMakeLists.txt
+│   │   ├── docs
+│   │   │   ├── GoGo Tester——GoAgent IP测试器，复活你的GoAgent _ HXS's Blog.pdf
+│   │   │   ├── gogoTesterWebSite.txt
+│   │   │   ├── Google IP 可用性检测脚本 - 依云's Blog.pdf
+│   │   │   ├── GScan：一个Google HTTPS IP可用性扫描工具.pdf
+│   │   │   ├── linux - 使用curl实现新浪天气API应用-lwfbibi-ChinaUnix博客.pdf
+│   │   │   ├── Python实现的Google IP 可用性检测脚本 - 爱捉吧.pdf
+│   │   │   ├── 实时生成的Google hosts文件 - Chiphell - 分享与交流用户体验的最佳平台 - Powered by Discuz!.pdf
+│   │   │   ├── 教你如何查找google IP段 · Issue #2743 · XX-net_XX-Net.pdf
+│   │   │   ├── 检查IP是否可用的python脚本 _ chliny.pdf
+│   │   │   ├── 步骤，ip段，测试方法，并发说说gogoTester-nodejs 的实现 - subying - 博客园 - 副本.pdf
+│   │   │   ├── 科学上网之辅助工具汇总 – 打酱油博客.pdf
+│   │   │   ├── 荒野求生：验证hosts可用IP的方法 - 为程序员服务.pdf
+│   │   │   └── 说说gogoTester-nodejs 的实现 - subying - 博客园.pdf
+│   │   ├── findGogoDns.cpp
+│   │   ├── gogoCfg.txt
+│   │   ├── gogoIpSet.txt
+│   │   ├── gogoSeg.txt
+│   │   ├── innerIpSet.txt
+│   │   ├── innerIpSet.txt.bak
+│   │   ├── innerIpSet - 副本.txt
+│   │   └── note.txt
+│   ├── framework
+│   │   ├── CMakeLists.txt
+│   │   ├── curl
+│   │   │   └── doc
+│   │   │       ├── curl.h
+│   │   │       ├── C++ 用libcurl库进行http通讯网络编程 - 绿色冰点 - 博客园.pdf
+│   │   │       ├── easy.h
+│   │   │       ├── getCurlInfo使用.pdf
+│   │   │       ├── http头获取并处理，libcurl 使用及例程-大隐隐于床-ChinaUnix博客.pdf
+│   │   │       ├── libcurl - programming tutorial.pdf
+│   │   │       ├── libcurl源码编译及使用 - B_H_L的专栏 - 博客频道 - CSDN.pdf
+│   │   │       ├── linux下LibCurl编程 - followingturing 追随图灵的路上... - 博客频道 - CSDN.pdf
+│   │   │       ├── linux下编译安装libcurl(附使用示例).pdf
+│   │   │       ├── multi-thread
+│   │   │       │   └── libcurl example - multithread.pdf
+│   │   │       ├── time
+│   │   │       │   ├── curl 查看一个web站点的响应时间(rt) - shuming的专栏 - 博客频道 - CSDN.pdf
+│   │   │       │   ├── libcurl - curl_easy_getinfo().pdf
+│   │   │       │   └── 获取站点的各类响应时间 - 运维生存时间.pdf
+│   │   │       ├── 关于使用libcurl的注意事项 - blade2001的专栏 - 博客频道 - CSDN.pdf
+│   │   │       └── 树莓派 libcurl安装 - midle110 - 博客频道 - CSDN.NET.html
+│   │   ├── list
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── doc
+│   │   │   │   ├── LIST.vxworks常用数据结构 - kukumouse的专栏 - 博客频道 - CSDN.pdf
+│   │   │   │   └── 链表——用C++模板实现 - Microsues的专栏 - 博客频道 - CSDN.pdf
+│   │   │   └── lstLib.c
+│   │   └── touch
+│   │       └── doc
+│   │           ├── 2015深度学习回顾：ConvNet、Caffe、Torch及其他.pdf
+│   │           ├── Torchnet_2016.pdf
+│   │           └── Torch是什么？ - Thinking In Jdon.pdf
+│   ├── main
+│   │   └── main.cpp
+│   └── trade
+│       └── Leveraging Google DeepMind software and Deep Learning to play the stock market：MachineLearning.pdf
+├── README.md
+└── tree.txt
+
+39 directories, 120 files
