@@ -18,7 +18,11 @@
 #include <errno.h>
 #include <stdarg.h> //va_list
 #include <math.h>
+#include <unistd.h>
+
+
 #include "../debug/debug.h"
+#include "../framework/list/lstLib.h"
 
 #define     STD_STR_SIZE    256     //ÆÕÍ¨×Ö·û´®³¤¶È 256B
 
@@ -28,4 +32,8 @@
 
 #define     min(a, b)        (((a) < (b)) ? (a) : (b))
 #define     max(a, b)        (((a) > (b)) ? (a) : (b))
+
+typedef void *(*START_ROUTINE)(void *);
+
+
 #endif

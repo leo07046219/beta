@@ -16,8 +16,6 @@ extern "C"
 {
 #endif
 
-typedef void *(*START_ROUTINE)(void *);
-
 #define     IP_SEGMENT_STR_LEN  28      //XXX.XXX-XXX.XXX-XXX.XXX-XXX\n
 #define     IP_V4_STR_LEN       16      //"XXX.XXX.XXX.XXX\n"
 #define     INNER_IP_SET_FILE   "/home/leo/alpha/findGogoDns/innerIpSet.txt"

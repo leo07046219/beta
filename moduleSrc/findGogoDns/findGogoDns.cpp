@@ -137,8 +137,9 @@ exit:
     if (pthread_attr_destroy(&attr) != 0)
     {
         retVal = -1;
-        goto exit;
     }
+
+    //TODO: 通知相关交互线程初始化完成
 
     return retVal;
 }
@@ -159,7 +160,7 @@ void C_FindGogoDns::waitModuleInited(void)
         if (false == m_bModuleInited)
         {
             /*启动时若线程初始化未完成，相关线程等待*/
-            levelDebug(INFO_LEV, "[%s][%d]:C_FindGogoDns not inited, wait!\n", \
+            levelDebug(WARNING_LEV, "[%s][%d]:C_FindGogoDns not inited, wait!\n", \
                 __FUNCTION__, __LINE__);
 
             pthread_cond_wait(&m_initCond, &m_initMutex);
@@ -458,8 +459,10 @@ int C_FindGogoDns::checkIp(const char *pIpStr)
             levelDebug(TRACE_LEV, "[%s][%d]: pIpStr[%s]\n", \
                 __FUNCTION__, __LINE__, pIpStr);
 
-            //levelDebug(TRACE_LEV, "\n[%s][%d]: strlen(%d)\nurlRetBuf[\n%s]\n", \
+            /*
+            levelDebug(TRACE_LEV, "\n[%s][%d]: strlen(%d)\nurlRetBuf[\n%s]\n", \
                 __FUNCTION__, __LINE__, strlen(urlRetBuf), urlRetBuf);
+            */
 
             levelDebug(WARNING_LEV, "[%s][%d]: find GOGO:ip[%s].delay[%f ms]\n", \
                 __FUNCTION__, __LINE__, \

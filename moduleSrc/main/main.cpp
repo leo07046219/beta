@@ -9,10 +9,12 @@
 
 #include "common.h"
 #include "findGogoDns.h"
+#include "cmdDispatcher.h"
 
 int main(void)
 {
-    C_FindGogoDns *findGogoDnsObjPtr = NULL;
+    C_FindGogoDns   *findGogoDnsObjPtr = NULL;
+    C_CmdDispatcher *cmdDispatcherObjPtr = NULL;
 
     findGogoDnsObjPtr = getFindGogoDnsObjPtr();
     if (NULL == findGogoDnsObjPtr)
@@ -22,9 +24,26 @@ int main(void)
         return -1;
     }
 
+#if 0
     if (findGogoDnsObjPtr->initFindGogoDns() != 0)
     {
         levelDebug(ERROR_LEV, "[%s][%d]:initFindGogoDns() failed!\n", \
+            __FUNCTION__, __LINE__);
+        return -1;
+    }
+#endif
+
+    cmdDispatcherObjPtr = getCmdDispatcherObjPtr();
+    if (NULL == cmdDispatcherObjPtr)
+    {
+        levelDebug(ERROR_LEV, "[%s][%d]:getCmdDispatcherObjPtr() failed!\n", \
+            __FUNCTION__, __LINE__);
+        return -1;
+    }
+
+    if (cmdDispatcherObjPtr->initCmdDispatcher() != 0)
+    {
+        levelDebug(ERROR_LEV, "[%s][%d]:initCmdDispatcher() failed!\n", \
             __FUNCTION__, __LINE__);
         return -1;
     }

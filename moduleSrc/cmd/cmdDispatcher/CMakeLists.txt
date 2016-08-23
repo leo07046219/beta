@@ -1,9 +1,12 @@
-﻿set(CMD_DISPATCHER_SRC_LIST cmdDispatcher.cpp)
+﻿#set(CMD_DISPATCHER_SRC_LIST cmdDispatcher.cpp)
+
+list(APPEND CMD_DISPATCHER_SRC_LIST ${listSrc})
+list(APPEND CMD_DISPATCHER_SRC_LIST "cmdDispatcher.cpp")
 
 #头文件目录
 #message(WARNING "hello:moduleIncludes = [${moduleIncludes}]")
 #message(WARNING "hello:srcList = [${srcList}]")
-#message(WARNING "hello:HELLO_SRC_LIST = [${HELLO_SRC_LIST}]")
+message(WARNING "cmdDispatcher:CMD_DISPATCHER_SRC_LIST = [${CMD_DISPATCHER_SRC_LIST}]")
 #include_directories (${moduleIncludes})
 
 #库文件目录
