@@ -475,9 +475,11 @@ int C_CmdDispatcher::regInputCmd(const char *pCmdName, INPUT_CALL_BACK_FUNC inpu
     snprintf(symblicLinkFolder, STD_STR_SIZE, "/sbin/%s", pCmdName);
     if (symlink(INPUT_CMD_FLODER, symblicLinkFolder) != 0)
     {
-        perror("symlink[/sbin/inputCmd] failed : ");
-        retVal = -1;
-        goto errExit;
+        levelDebug(ERROR_LEV, "[%s][%d]: symlink[%s] failed \n", \
+            __FUNCTION__, __LINE__, symblicLinkFolder);
+        perror(": ");
+        //retVal = -1;
+        //goto errExit;
     }
 
     return retVal;
@@ -602,8 +604,8 @@ int C_CmdDispatcher::executeCmd(CMD_NODE_PTR pCmdNode, const char *pInputBuf, ch
 }
 
 /*************************************************
-* Function:        executeCmd()
-* Description:     Ö´ĞĞÃüÁî
+* Function:        showInputCmdList()
+* Description:     ´òÓ¡ËùÓĞÃüÁî
 * Access Level:    private
 * Input:           pCmdName
 * Output:          N/A
@@ -614,14 +616,24 @@ int C_CmdDispatcher::showInputCmdList(void *pInputParam, const char *pInputBuf, 
     CMD_NODE_PTR pCmdNode = NULL;
 
     assert(ms_cmdDispatcherObjPtr != NULL);
+
+    sprintf(pOutputBuf, "the inputCmdList is:\n");
+
+    pthread_mutex_lock(&(ms_cmdDispatcherObjPtr->m_paramMutex));
+
     for (pCmdNode = (CMD_NODE_PTR)(lstFirst(&(ms_cmdDispatcherObjPtr->m_cmdDispatcherParam.cmdNodeList))); \
         pCmdNode != NULL; \
         pCmdNode = (CMD_NODE_PTR)(lstNext(&(pCmdNode->node))))
     {
-        sprintf(pOutputBuf, "the inputCmdList is:\n");
+        /*
+        levelDebug(TRACE_LEV, "[%s][%d]: cmd[%s]\n", \
+            __FUNCTION__, __LINE__, pCmdNode->cmdName);
+        */
         sprintf(pOutputBuf + strlen(pOutputBuf), "%s\n", \
             pCmdNode->cmdName);
     }
+
+    pthread_mutex_unlock(&(ms_cmdDispatcherObjPtr->m_paramMutex));
 
     return 0;
 }

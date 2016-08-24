@@ -15,6 +15,20 @@ int main(void)
 {
     C_FindGogoDns   *findGogoDnsObjPtr = NULL;
     C_CmdDispatcher *cmdDispatcherObjPtr = NULL;
+    
+    cmdDispatcherObjPtr = getCmdDispatcherObjPtr();
+    if (NULL == cmdDispatcherObjPtr)
+    {
+        levelDebug(ERROR_LEV, "[%s][%d]:getCmdDispatcherObjPtr() failed!\n", \
+            __FUNCTION__, __LINE__);
+        return -1;
+    }
+    if (cmdDispatcherObjPtr->initCmdDispatcher() != 0)
+    {
+        levelDebug(ERROR_LEV, "[%s][%d]:initCmdDispatcher() failed!\n", \
+            __FUNCTION__, __LINE__);
+        return -1;
+    }
 
     findGogoDnsObjPtr = getFindGogoDnsObjPtr();
     if (NULL == findGogoDnsObjPtr)
@@ -24,7 +38,7 @@ int main(void)
         return -1;
     }
 
-#if 0
+#if 1
     if (findGogoDnsObjPtr->initFindGogoDns() != 0)
     {
         levelDebug(ERROR_LEV, "[%s][%d]:initFindGogoDns() failed!\n", \
@@ -32,21 +46,6 @@ int main(void)
         return -1;
     }
 #endif
-
-    cmdDispatcherObjPtr = getCmdDispatcherObjPtr();
-    if (NULL == cmdDispatcherObjPtr)
-    {
-        levelDebug(ERROR_LEV, "[%s][%d]:getCmdDispatcherObjPtr() failed!\n", \
-            __FUNCTION__, __LINE__);
-        return -1;
-    }
-
-    if (cmdDispatcherObjPtr->initCmdDispatcher() != 0)
-    {
-        levelDebug(ERROR_LEV, "[%s][%d]:initCmdDispatcher() failed!\n", \
-            __FUNCTION__, __LINE__);
-        return -1;
-    }
 
 #if 1
     while (1)

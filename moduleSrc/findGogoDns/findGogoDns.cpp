@@ -13,12 +13,13 @@
 5.搜索的循环机制，loop the innerIpSet；
 6.搜索结果超时如何呈现：txt中直接标出来，还是只维持在内存:
 0-100ms、100-200ms、200-300ms、300-500ms，区间内升序
+7.curl退出时需要销毁的，在errExit和析构中完成
 **************************************************************************************/
 
 #include "common.h"
 #include "findGogoDns.h"
 #include <curl/curl.h>
-
+#include "cmdDispatcher.h"
 
 /*静态成员变量初始化*/
 C_FindGogoDns *C_FindGogoDns::ms_findGogoDnsObjPtr = NULL;
@@ -90,18 +91,43 @@ C_FindGogoDns *getFindGogoDnsObjPtr()
 ***********************************************************/
 int C_FindGogoDns::initFindGogoDns(void)
 {
-    CURL *curl;
+    CURL *curl = NULL;
+    C_CmdDispatcher *cmdDispatcherObjPtr = NULL;
 
     curl = curl_easy_init();
+    if (NULL == curl)
+    {
+        levelDebug(ERROR_LEV, "[%s][%d]: curl_easy_init() failed!\n", \
+            __FUNCTION__, __LINE__);
+        return -1;
+    }
 
     levelDebug(INFO_LEV, "[%s][%d]: ... !\n", \
         __FUNCTION__, __LINE__);
 
     if (startFindGogoDnsTask() != 0)
     {
-        levelDebug(ERROR_LEV, "[%s][%d]: startFindGogoDnsTask() failed!\n");
+        levelDebug(ERROR_LEV, "[%s][%d]: startFindGogoDnsTask() failed!\n", \
+            __FUNCTION__, __LINE__);
         return -1;
     }
+
+    cmdDispatcherObjPtr = getCmdDispatcherObjPtr();
+    if (NULL == cmdDispatcherObjPtr)
+    {
+        levelDebug(ERROR_LEV, "[%s][%d]: getCmdDispatcherObjPtr() failed!\n");
+        return -1;
+    }
+    if (cmdDispatcherObjPtr->regInputCmd("findGogoDns", findGogoDns, (void *)this) != 0)
+    {
+        levelDebug(ERROR_LEV, "[%s][%d]: regInputCmd(findGogoDns) failed!\n");
+        return -1;
+    }
+
+    pthread_mutex_lock(&m_initMutex);
+    m_bModuleInited = true;
+    pthread_cond_broadcast(&m_initCond);
+    pthread_mutex_unlock(&m_initMutex);
 
     return 0;
 }
@@ -1103,4 +1129,22 @@ int C_FindGogoDns::getIpFromIpSegment(const char *ipSegment, int *pIpNum, IP_STR
 exit:
 
     return retVal;
+}
+
+/*************************************************
+* Function:        findGogoDns()
+* Description:     执行命令
+* Access Level:    private
+* Input:           pCmdName
+* Output:          N/A
+* Return:          0--成功/-1--失败
+*************************************************/
+int C_FindGogoDns::findGogoDns(void *pInputParam, const char *pInputBuf, char *pOutputBuf)
+{
+    levelDebug(INFO_LEV, "[%s][%d]: \n", \
+        __FUNCTION__, __LINE__);
+
+    sprintf(pOutputBuf + strlen(pOutputBuf), " ... findGOgoDns cmd\n");
+
+    return 0;
 }
