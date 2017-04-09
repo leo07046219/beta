@@ -1,3 +1,0 @@
-/home/leo/beta/moduleSrc/cmd/cmdInput/build/CMakeFiles/edit_cache.dir
-/home/leo/beta/moduleSrc/cmd/cmdInput/build/CMakeFiles/inputCmd.dir
-/home/leo/beta/moduleSrc/cmd/cmdInput/build/CMakeFiles/rebuild_cache.dir

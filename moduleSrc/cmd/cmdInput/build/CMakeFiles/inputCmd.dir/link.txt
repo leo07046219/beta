@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/inputCmd.dir/cmdInput.cpp.o  -o ../bin/inputCmd -rdynamic -lstdc++ 
