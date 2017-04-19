@@ -129,6 +129,8 @@ private:
     static void checkIpTaskFuncTaskShell(CHECK_IP_TASK_INFO_PTR pCheckIpTaskInfo);
     int         checkIpTaskFunc(CHECK_IP_INFO_PTR pCheckIpInfo);
 
+    static int  findGogoDns(void *pInputParam, const char *pInputBuf, char *pOutputBuf);
+
     int         multiThreadGetIp(int ipNumInSeg, IP_STR_PTR pIpStrBuf);
     int         resumeIpSeg(char * pIpStr);
     int         storeIpSeg(char * pIpStr);
