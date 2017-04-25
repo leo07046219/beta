@@ -18,7 +18,7 @@
 
 #include "common.h"
 #include "findGogoDns.h"
-#include <curl/curl.h>
+#include "curl.h"
 #include "cmdDispatcher.h"
 
 /*静态成员变量初始化*/

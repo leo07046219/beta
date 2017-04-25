@@ -10,6 +10,7 @@ message(WARNING "findGOgoDns:FIND_GOGO_DNS_SRC_LIST = [${FIND_GOGO_DNS_SRC_LIST}
 #include_directories (${moduleIncludes})
 
 #库文件目录
+message(WARNING "findGogoDns:CMAKE_LIBRARY_PATH = [${CMAKE_LIBRARY_PATH}]")
 
 #可执行文件生成目录
 #set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
