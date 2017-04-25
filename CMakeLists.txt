@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 2.8)
 
 PROJECT (beta)
 
-#ÔİÊ±ÆÁ±Î
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
+set(CMAKE_C_COMPILER "/home/leo/toolChains/raspbian-toolchain-gcc-4.7.2-linux64/bin/arm-linux-gnueabihf-cc")
+set(CMAKE_CXX_COMPILER "/home/leo/toolChains/raspbian-toolchain-gcc-4.7.2-linux64/bin/arm-linux-gnueabihf-c++")
+
+#Ã”ÃÃŠÂ±Ã†ÃÂ±Ã
 #set(CMAKE_C_FLAGS "-O2 -Wall -fsigned-char -Wno-unused")
 #set(CMAKE_CXX_FLAGS "-O2 -Wall -fsigned-char -Wno-unused")
 
@@ -11,38 +16,45 @@ PROJECT (beta)
 #set(CMAKE_C_FLAGS "-Wall")
 #set(CMAKE_CXX_FLAGS "-Wall")
 
-#ÉèÖÃÏîÄ¿¹Ø¼üÂ·¾¶
-set(PROJECT_ROOT_DIRECTORY /home/leo/beta)
+#æŒ‡å®šç¼–è¯‘é¡¹ç›®ç›¸å…³è·¯å¾„--è¿ç§»å¹³å°ï¼Œæ–‡ä»¶å¤¹å‘ç”Ÿå˜åŒ–æ—¶éœ€è¦è°ƒæ•´ï¼
+set(PROJECT_ROOT_DIRECTORY /home/leo/beta/beta)
 set(PROJECT_BINARY_DIR "${PROJECT_ROOT_DIRECTORY}/bin")
 set(PROJECT_INCLUDE_DIR "${PROJECT_ROOT_DIRECTORY}/moduleInclude")
 set(PROJECT_SOURCE_DIR "${PROJECT_ROOT_DIRECTORY}/moduleSrc")
 
-#Ö¸¶¨¿ÉÖ´ĞĞÎÄ¼şµÄÊä³öÄ¿Â¼£¬Êä³öµ½binÏÂÃæ
+#æŒ‡å®šç”Ÿæˆçš„å¯æ‰§è¡Œæ–‡ä»¶è·¯å¾„
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_ROOT_DIRECTORY}/bin)
 
-#»ñÈ¡Í·ÎÄ¼şÄ¿Â¼ --- ĞèÒªÒ»¸öµİ¹é»ñÈ¡×ÓÄ¿Â¼ÃûµÄº¯Êı
+#æ·»åŠ moduleIncludeç›®å½•ä¸‹å¤´æ–‡ä»¶
 file(GLOB moduleIncludes moduleInclude/*)
 
-#frameworkÄ¿Â¼ÏÂ×ÓÎÄ¼ş¼Ğ
+#æ·»åŠ frameworkç›®å½•ä¸‹å¤´æ–‡ä»¶
 file(GLOB frameworkIncludes moduleInclude/framework/*)
 list(APPEND moduleIncludes ${frameworkIncludes})
 #message(WARNING "main:frameworkIncludes = [${frameworkIncludes}]")
 
-#°üº¬ÏµÍ³Ä¿Â¼ÏÂµÄcurlÍ·ÎÄ¼ş
-set(CURL_HEADFILE_FOLDER "/usr/include")
+#libcurlå¤´æ–‡ä»¶åŠåº“æ–‡ä»¶ç›®å½•
+set(CURL_HEADFILE_FOLDER "/home/leo/beta/beta/moduleSrc/framework/curl/curl-7.54.0/output/include/curl")
 list(APPEND moduleIncludes ${CURL_HEADFILE_FOLDER})
+set(CURL_LIB_ROUTINE "/home/leo/beta/beta/moduleSrc/framwork/curl/curl-7.54.0/output/lib")
 
+message(WARNING "main:CURL_LIB_ROUTINE = [${CURL_LIB_ROUTINE}]")
 message(WARNING "main:moduleIncludes = [${moduleIncludes}]")
 include_directories (${moduleIncludes})
 
-#message(WARNING "main:PROJECT_ROOT_DIRECTORY = [${PROJECT_ROOT_DIRECTORY}]")
-#message(WARNING "main:PROJECT_BINARY_DIR = [${PROJECT_BINARY_DIR}]")
-#message(WARNING "main:PROJECT_INCLUDE_DIR = [${PROJECT_INCLUDE_DIR}]")
-#message(WARNING "main:PROJECT_SOURCE_DIR = [${PROJECT_SOURCE_DIR}]")
+list(APPEND CMAKE_LIBRARY_PATH ${CURL_LIB_ROUTINE})
+message(WARNING "main:CMAKE_LIBRARY_PATH = [${CMAKE_LIBRARY_PATH}]")
 
 
-#»ñÈ¡Ô´ÎÄ¼ş--ĞèÒª×Ô¼ºÌí¼Ó×ÓÄ¿Â¼Ãû -- ³¢ÊÔÓÃfileÌæ´ú
-#±éÀúËùÓĞcppÄ¿Â¼£¬ĞÎ³ÉSRC_LIST
+message(WARNING "main:PROJECT_ROOT_DIRECTORY = [${PROJECT_ROOT_DIRECTORY}]")
+message(WARNING "main:PROJECT_BINARY_DIR = [${PROJECT_BINARY_DIR}]")
+message(WARNING "main:PROJECT_INCLUDE_DIR = [${PROJECT_INCLUDE_DIR}]")
+message(WARNING "main:PROJECT_SOURCE_DIR = [${PROJECT_SOURCE_DIR}]")
+
+
+#link_directories("/home/leo/beta/beta/moduleSrc/framwork/curl/curl-7.54.0/output/lib")
+#Â»Ã±ÃˆÂ¡Ã”Â´ÃÃ„Â¼Ã¾--ÃÃ¨Ã’ÂªÃ—Ã”Â¼ÂºÃŒÃ­Â¼Ã“Ã—Ã“Ã„Â¿Ã‚Â¼ÃƒÃ» -- Â³Â¢ÃŠÃ”Ã“ÃƒfileÃŒÃ¦Â´Ãº
+#Â±Ã©Ã€ÃºÃ‹Ã¹Ã“ÃcppÃ„Â¿Ã‚Â¼Â£Â¬ÃÃÂ³Ã‰SRC_LIST
 
 aux_source_directory("${PROJECT_SOURCE_DIR}/framework/list" listSrc)
 list(APPEND srcList ${listSrc})
@@ -62,6 +74,9 @@ list(APPEND srcList ${mainSrc})
 message(WARNING "main:srcList = [${srcList}]")
 
 #add_subdirectory("${PROJECT_SOURCE_DIR}")
+
+#link_libraries("/home/leo/beta/beta/moduleSrc/framwork/curl/curl-7.54.0/output/lib")
+link_directories("/home/leo/beta/beta/moduleSrc/framework/curl/curl-7.54.0/output/lib")
 
 add_executable(main "${srcList}")
 
